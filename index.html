@@ -1,98 +1,52 @@
-[
-  {
-    "id": 1,
-    "nombre": "Juan",
-    "apellidoPaterno": "Pérez",
-    "apellidoMaterno": "González",
-    "codigoCBP": "CBP-001",
-    "dni": "12345678",
-    "cursos": ["Primeros Auxilios", "Rescate Vertical", "BREC"],
-    "resolucionesAscenso": [
-      {"fecha": "2010-01-15", "grado": "Cabo"},
-      {"fecha": "2015-07-20", "grado": "Sargento"},
-      {"fecha": "2020-11-01", "grado": "Teniente"}
-    ],
-    "telefono": "987654321",
-    "cumpleanos": "1985-05-10",
-    "fechaNacimiento": "1985-05-10",
-    "horasServicio": 1800,
-    "emergenciasAtendidas": 300,
-    "gradoJerarquico": "Teniente"
-  },
-  {
-    "id": 2,
-    "nombre": "María",
-    "apellidoPaterno": "López",
-    "apellidoMaterno": "Martínez",
-    "codigoCBP": "CBP-002",
-    "dni": "87654321",
-    "cursos": ["Contra Incendios", "Soporte Vital Básico", "USAR"],
-    "resolucionesAscenso": [
-      {"fecha": "2012-03-01", "grado": "Bombero"},
-      {"fecha": "2018-09-10", "grado": "Cabo"}
-    ],
-    "telefono": "912345678",
-    "cumpleanos": "1990-11-22",
-    "fechaNacimiento": "1990-11-22",
-    "horasServicio": 1000,
-    "emergenciasAtendidas": 150,
-    "gradoJerarquico": "Cabo"
-  },
-  {
-    "id": 3,
-    "nombre": "Carlos",
-    "apellidoPaterno": "Ramírez",
-    "apellidoMaterno": "Soto",
-    "codigoCBP": "CBP-003",
-    "dni": "45678901",
-    "cursos": ["Hazmat", "Comunicaciones"],
-    "resolucionesAscenso": [
-      {"fecha": "2018-06-01", "grado": "Bombero"}
-    ],
-    "telefono": "934567890",
-    "cumpleanos": "1992-03-05",
-    "fechaNacimiento": "1992-03-05",
-    "horasServicio": 600,
-    "emergenciasAtendidas": 80,
-    "gradoJerarquico": "Bombero"
-  },
-  {
-    "id": 4,
-    "nombre": "Ana",
-    "apellidoPaterno": "Flores",
-    "apellidoMaterno": "Rojas",
-    "codigoCBP": "CBP-004",
-    "dni": "23456789",
-    "cursos": ["Primeros Auxilios", "Rescate Acuático"],
-    "resolucionesAscenso": [
-      {"fecha": "2019-01-20", "grado": "Bombero"},
-      {"fecha": "2023-08-15", "grado": "Cabo"}
-    ],
-    "telefono": "956789012",
-    "cumpleanos": "1995-09-01",
-    "fechaNacimiento": "1995-09-01",
-    "horasServicio": 950,
-    "emergenciasAtendidas": 130,
-    "gradoJerarquico": "Cabo"
-  },
-  {
-    "id": 5,
-    "nombre": "Pedro",
-    "apellidoPaterno": "Huamán",
-    "apellidoMaterno": "Castro",
-    "codigoCBP": "CBP-005",
-    "dni": "90123456",
-    "cursos": ["Conducción de Unidades", "Manejo de Materiales Peligrosos"],
-    "resolucionesAscenso": [
-      {"fecha": "2005-02-10", "grado": "Cabo"},
-      {"fecha": "2010-06-12", "grado": "Sargento"},
-      {"fecha": "2017-03-25", "grado": "Capitán"}
-    ],
-    "telefono": "978901234",
-    "cumpleanos": "1978-02-15",
-    "fechaNacimiento": "1978-02-15",
-    "horasServicio": 3500,
-    "emergenciasAtendidas": 600,
-    "gradoJerarquico": "Capitán"
-  }
-]
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Bomberos</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Icono de Font Awesome para una "X" de cerrar en el modal -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Cuerpo_General_de_Bomberos_Voluntarios_del_Per%C3%BA_escudo.png" alt="Logo CGBVP" class="logo">
+            <h1>Sistema de Gestión de Bomberos</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-section">
+            <input type="text" id="search-input" placeholder="Buscar por Código CBP o Nombre..." class="search-input">
+            <button id="search-button" class="search-button">Buscar</button>
+            <select id="search-type" class="search-select">
+                <option value="nombre">Nombre/Apellido</option>
+                <option value="codigoCBP">Código CBP</option>
+            </select>
+        </div>
+
+        <div id="results-container" class="results-container">
+            <!-- Aquí se mostrarán los resultados de la búsqueda -->
+            <p class="no-results" id="no-results-message">No hay bomberos para mostrar. Por favor, realiza una búsqueda.</p>
+        </div>
+    </main>
+
+    <!-- Modal para detalles del bombero -->
+    <div id="bombero-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-nombre-completo"></h2>
+            <div id="modal-details-content">
+                <!-- Detalles del bombero se cargarán aquí -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2023 Cuerpo General de Bomberos Voluntarios del Perú</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
