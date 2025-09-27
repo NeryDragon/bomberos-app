@@ -1,1 +1,301 @@
+/* Variables de color */
+:root {
+    --color-primary: #e44d26; /* Rojo vibrante, como un camión de bomberos */
+    --color-secondary: #333; /* Gris oscuro */
+    --color-text-light: #f4f4f4; /* Texto claro */
+    --color-text-dark: #222; /* Texto oscuro */
+    --color-background: #1a1a1a; /* Fondo oscuro */
+    --color-card-bg: #2b2b2b; /* Fondo de tarjetas */
+    --color-border: #444; /* Borde oscuro */
+    --color-success: #28a745; /* Verde para "Cumple" */
+    --color-warning: #ffc107; /* Amarillo para "Requiere Mejorar" */
+}
 
+/* Estilos Generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 3px solid var(--color-primary);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.header .logo {
+    height: 60px; /* Tamaño del logo */
+    width: auto;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+/* Sección de Búsqueda */
+.search-section {
+    background-color: var(--color-card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Para que los elementos se ajusten en pantallas pequeñas */
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input, .search-select {
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: var(--color-background);
+    color: var(--color-text-light);
+    flex-grow: 1; /* Para que el input se expanda */
+    max-width: 300px; /* Ancho máximo para el input */
+}
+
+.search-button {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #c0392b; /* Un rojo más oscuro al pasar el mouse */
+}
+
+/* Contenedor de Resultados (Grilla de Tarjetas) */
+.results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.no-results {
+    text-align: center;
+    grid-column: 1 / -1; /* Para que ocupe todo el ancho de la grilla */
+    font-size: 1.2em;
+    color: var(--color-border);
+}
+
+/* Tarjeta de Bombero */
+.bombero-card {
+    background-color: var(--color-card-bg);
+    border-left: 5px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bombero-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.bombero-card h3 {
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.bombero-card p {
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+
+.bombero-card span {
+    font-weight: bold;
+    color: var(--color-text-light);
+}
+
+.performance-indicator {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.performance-indicator.cumple {
+    background-color: var(--color-success);
+    color: white;
+}
+
+.performance-indicator.requiere {
+    background-color: var(--color-warning);
+    color: var(--color-text-dark);
+}
+
+/* Modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Permanece en su lugar incluso al desplazar */
+    z-index: 1000; /* Lo pone por encima de todo lo demás */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    overflow: auto; /* Habilita el desplazamiento si es necesario */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background-color: var(--color-card-bg);
+    margin: 10% auto; /* 10% desde arriba y centrado horizontalmente */
+    padding: 30px;
+    border: 1px solid var(--color-primary);
+    border-radius: 10px;
+    width: 80%; /* Podría ser más grande o más pequeño */
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-out;
+}
+
+.modal-content h2 {
+    color: var(--color-primary);
+    margin-top: 0;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    margin: 10px 0;
+    color: var(--color-text-light);
+}
+
+.modal-content strong {
+    color: var(--color-primary);
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.modal-content ul li {
+    background-color: var(--color-background);
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+}
+
+.modal-content .close-button {
+    color: var(--color-border);
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-content .close-button:hover,
+.modal-content .close-button:focus {
+    color: var(--color-primary);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animaciones para el modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    border-top: 3px solid var(--color-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8em;
+    }
+    .search-section {
+        flex-direction: column;
+    }
+    .search-input, .search-select, .search-button {
+        width: 100%;
+        max-width: unset; /* Eliminar el ancho máximo para que ocupen todo el ancho disponible */
+    }
+    .modal-content {
+        width: 90%;
+        margin: 5% auto;
+    }
+}
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5em;
+    }
+    .header .logo {
+        height: 45px;
+    }
+    .search-section {
+        padding: 15px;
+    }
+    .search-input, .search-select, .search-button {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .bombero-card h3 {
+        font-size: 1.3em;
+    }
+    .bombero-card p {
+        font-size: 0.9em;
+    }
+}
