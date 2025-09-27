@@ -299,3 +299,45 @@ body {
         font-size: 0.9em;
     }
 }
+
+
+
+/* Estilos para el input de archivo */
+.hidden-file-input {
+    display: none; /* Oculta el input de archivo nativo */
+}
+
+.file-input-label {
+    background-color: #555; /* Un color secundario para el botón de cargar */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    display: inline-flex; /* Para que el texto y el icono si lo hubiera, estén centrados */
+    align-items: center;
+    gap: 8px;
+    max-width: 300px; /* Para que no ocupe demasiado espacio */
+    justify-content: center;
+}
+
+.file-input-label:hover {
+    background-color: #777;
+}
+
+#file-name-display {
+    white-space: nowrap; /* Evita que el texto se rompa */
+    overflow: hidden;    /* Oculta el texto si es muy largo */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si se oculta texto */
+    max-width: 200px; /* Limita el ancho del texto del nombre del archivo */
+}
+
+/* Ajustes responsivos para el nuevo botón */
+@media (max-width: 768px) {
+    .file-input-label, #load-excel-button {
+        width: 100%;
+        max-width: unset;
+    }
+}
